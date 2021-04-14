@@ -1,0 +1,24 @@
+@import "../../assets/styles/main.scss";
+.InputWrapper {
+  display: flex;
+  button {
+    background-color: rgb(83, 132, 210);
+    color: white;
+    padding: 8px 12px;
+    text-transform: uppercase;
+    margin-left: 2rem;
+    border: none;
+    border-radius: 5px;
+    box-shadow: $box-shadow-login-menu;
+    transition: all 0.2s;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+.Input {
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #444;
+  box-shadow: $box-shadow-login-menu;
+}

@@ -1,0 +1,19 @@
+@import "../../../assets/styles/main.scss";
+
+.MovieItem {
+  font-size: 2.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8px 20px;
+  border-radius: 6px;
+  background-color: $color-grey-light;
+  color: $color-font-dark;
+  box-shadow: $box-shadow-comments;
+  font-weight: 600;
+  span {
+    display: inline-block;
+  }
+}

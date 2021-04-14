@@ -1,0 +1,13 @@
+@import "../../assets/styles/main.scss";
+.MovieList {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+  @include largest {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include small {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

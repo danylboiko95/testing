@@ -1,0 +1,37 @@
+@mixin largestone {
+  @media (max-width: $bp-largestone) {
+    @content;
+  }
+}
+
+@mixin largest {
+  @media (max-width: $bp-largest) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media (max-width: $bp-large) {
+    @content;
+  }
+}
+@mixin medium {
+  @media (max-width: $bp-medium) {
+    @content;
+  }
+}
+@mixin small {
+  @media (max-width: $bp-small) {
+    @content;
+  }
+}
+@mixin smallest {
+  @media (max-width: $bp-smallest) {
+    @content;
+  }
+}
+@mixin smallestone {
+  @media (max-width: $bp-smallestone) {
+    @content;
+  }
+}
