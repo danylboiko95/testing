@@ -1,5 +1,6 @@
 import React from "react";
-import { IMovie } from "../../../store/actions/moviesActions/moviesActions";
+import { IMovie } from "../../../types/Interfaces/IMovie";
+
 import classes from "./MovieItem.module.scss";
 
 interface IPropsMovieItem {
@@ -8,7 +9,7 @@ interface IPropsMovieItem {
 
 const MovieItem: React.FC<IPropsMovieItem> = ({ movie }) => {
   return (
-    <li  className={classes.MovieItem}>
+    <li className={classes.MovieItem}>
       <span>{movie.Title}</span>
       <img src={movie.Poster} alt={movie.Title} />
       <span>{movie.Year}</span>

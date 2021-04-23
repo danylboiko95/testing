@@ -1,29 +1,21 @@
 import React from "react";
-import { connect } from "react-redux";
-
-import { IMovie } from "../../store/actions/moviesActions/moviesActions";
-import { AppState } from "../../store/store";
+import { IMovie } from "../../types/Interfaces/IMovie";
 import MovieItem from "./MovieItem/MovieItem";
 import classes from "./MovieList.module.scss";
 
-interface IPropsMoviesList {}
+interface IPropsMoviesList {
+  movies: IMovie[];
+}
 
-const MoviesList: React.FC<IPropsMoviesList & ILinkStateProps> = (props) => {
-  const randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-  const uniqid = randLetter + Date.now();
+const MoviesList: React.FC<IPropsMoviesList> = (props) => {
   const list = props.movies.map((item: IMovie) => {
-    return <MovieItem movie={item} key={item.imdbID + item.Title + uniqid} />;
+    return <MovieItem movie={item} key={item.imdbID} />; // Also I used more complexed id, because I had response from imbd with the same IDs. For instanse if you search for Guardians you would have duplicated Rise of the Guardians movie
+    //2: {Title: "Rise of the Guardians", Year: "2012", imdbID: "tt1446192", Type: "movie",
+    //3: {Title: "Rise of the Guardians", Year: "2012", imdbID: "tt1446192", Type: "movie",
+    //I added image 
   });
 
   return <ul className={classes.MovieList}>{list}</ul>;
 };
 
-interface ILinkStateProps {
-  movies: IMovie[];
-}
-
-const mapStateToProps = (state: AppState): ILinkStateProps => ({
-  movies: state.movies.movies,
-});
-
-export default connect(mapStateToProps)(MoviesList);
+export default MoviesList;

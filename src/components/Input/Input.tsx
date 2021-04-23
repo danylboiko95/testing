@@ -1,35 +1,19 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { IMovie } from "../../store/actions/moviesActions/moviesActions";
-import { AppState } from "../../store/store";
-import { ThunkDispatch } from "redux-thunk";
-import { AppActions } from "../../store/actions/types/actions";
-import { bindActionCreators } from "redux";
-import { onAddMovies } from "../../store/actions/moviesActions/movies";
+
 import classes from "./Input.module.scss";
 
-interface IPropsInput {}
+interface IPropsInput {
+  setSeachQuery: (value: string) => void;
+  searchMovie: () => void;
+}
 
-const Input: React.FC<IPropsInput & ILinkStateProps & ILinkDispatchProps> = (
-  props
-) => {
-  const [inputValue, setInputValue] = useState("Guard");
+const Input: React.FC<IPropsInput> = ({ setSeachQuery, searchMovie }) => {
+  const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
-  const searchMovie = async () => {
-    if (inputValue.length > 3) {
-      fetch(`http://www.omdbapi.com/?s=${inputValue}&apikey=69d3c7cf`)
-        .then((res: any) => {
-          return res.json();
-        })
-        .then((data) => {
-          const movies = data.Search;
-          props.onAddMovies(movies);
-        });
-    }
+    const movie = e.target.value;
+    setInputValue(movie);
+    setSeachQuery(movie);
   };
 
   return (
@@ -44,21 +28,5 @@ const Input: React.FC<IPropsInput & ILinkStateProps & ILinkDispatchProps> = (
     </div>
   );
 };
-interface ILinkStateProps {
-  movies: IMovie;
-}
-interface ILinkDispatchProps {
-  onAddMovies: (movies: any[]) => void;
-}
 
-const mapStateToProps = (state: AppState): ILinkStateProps => ({
-  movies: state.movies,
-});
-
-const mapDispatchToProps = (
-  dispatch: ThunkDispatch<any, any, AppActions>
-): ILinkDispatchProps => ({
-  onAddMovies: bindActionCreators(onAddMovies, dispatch),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Input);
+export default Input;
